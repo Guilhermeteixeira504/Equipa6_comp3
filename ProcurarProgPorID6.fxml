@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cliente_javafx.ProcurarProgramaController">
+
+    <children>
+        <VBox spacing="15"
+              alignment="CENTER"
+              AnchorPane.topAnchor="20"
+              AnchorPane.bottomAnchor="20"
+              AnchorPane.leftAnchor="20"
+              AnchorPane.rightAnchor="20">
+
+            <!-- TÍTULO -->
+            <Label text="Procurar Programa de Voluntariado"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+            <!-- ID DO PROGRAMA -->
+            <HBox spacing="10">
+                <Label text="ID do Programa:" minWidth="160"/>
+                <TextField fx:id="programaIdField"
+                           promptText="Ex: 1"/>
+            </HBox>
+
+            <!-- BOTÃO -->
+            <Button text="Procurar Programa"
+                    prefWidth="250"
+                    onAction="#procurarPrograma"/>
+
+            <!-- RESULTADO -->
+            <TextArea fx:id="resultadoArea"
+                      prefHeight="250"
+                      wrapText="true"
+                      editable="false"
+                      promptText="Aqui será mostrado o programa encontrado"/>
+
+        </VBox>
+    </children>
+</AnchorPane>

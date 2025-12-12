@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cliente_javafx.RegistarUtilizadorController">
+
+    <children>
+        <VBox spacing="15"
+              alignment="CENTER"
+              AnchorPane.topAnchor="20"
+              AnchorPane.bottomAnchor="20"
+              AnchorPane.leftAnchor="20"
+              AnchorPane.rightAnchor="20">
+
+            <!-- TÍTULO -->
+            <Label text="Registar Novo Utilizador"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+            <!-- NOME -->
+            <HBox spacing="10">
+                <Label text="Nome:" minWidth="150"/>
+                <TextField fx:id="nomeField"
+                           promptText="Nome do utilizador"/>
+            </HBox>
+
+            <!-- EMAIL -->
+            <HBox spacing="10">
+                <Label text="Email:" minWidth="150"/>
+                <TextField fx:id="emailField"
+                           promptText="email@exemplo.com"/>
+            </HBox>
+
+            <!-- PASSWORD -->
+            <HBox spacing="10">
+                <Label text="Password:" minWidth="150"/>
+                <PasswordField fx:id="passwordField"
+                               promptText="Password"/>
+            </HBox>
+
+            <!-- MORADA -->
+            <HBox spacing="10">
+                <Label text="Morada:" minWidth="150"/>
+                <TextField fx:id="moradaField"
+                           promptText="Morada"/>
+            </HBox>
+
+            <!-- TELEMÓVEL -->
+            <HBox spacing="10">
+                <Label text="Telemóvel:" minWidth="150"/>
+                <TextField fx:id="telemovelField"
+                           promptText="912345678"/>
+            </HBox>
+
+            <!-- TIPO UTILIZADOR -->
+            <HBox spacing="10">
+                <Label text="Tipo de Utilizador:" minWidth="150"/>
+                <ComboBox fx:id="tipoUtilizadorBox"
+                          promptText="Selecionar tipo"
+                          prefWidth="200">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="ADMIN"/>
+                            <String fx:value="USER"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </HBox>
+
+            <!-- BOTÃO -->
+            <Button text="Registar Utilizador"
+                    prefWidth="250"
+                    onAction="#registarUtilizador"/>
+
+            <!-- RESULTADO -->
+            <TextArea fx:id="resultadoArea"
+                      prefHeight="200"
+                      wrapText="true"
+                      editable="false"
+                      promptText="Resposta do servidor"/>
+
+        </VBox>
+    </children>
+</AnchorPane>
