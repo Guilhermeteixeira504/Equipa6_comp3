@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minHeight="450.0" minWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllers.ProgramaVoluntariadoListaController">
+
+    <top>
+        <Label alignment="CENTER" style="-fx-text-fill: blue;" text="Lista de Programas de Voluntariado" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="20.0" />
+            </font>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+        </Label>
+    </top>
+
+    <center>
+        <TableView fx:id="tableProgramas" prefHeight="300.0" prefWidth="760.0">
+
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+
+                <TableColumn fx:id="colTitulo" prefWidth="180.0" text="Título" />
+
+                <TableColumn fx:id="colLocalizacao" prefWidth="150.0" text="Localização" />
+
+                <TableColumn fx:id="colVagas" prefWidth="90.0" text="Nº Vagas" />
+
+                <TableColumn fx:id="colHoras" prefWidth="90.0" text="Total Horas" />
+
+                <TableColumn fx:id="colDataInicio" prefWidth="100.0" text="Data Início" />
+
+                <TableColumn fx:id="colDataFim" prefWidth="100.0" text="Data Fim" />
+            </columns>
+
+        </TableView>
+    </center>
+
+</BorderPane>
