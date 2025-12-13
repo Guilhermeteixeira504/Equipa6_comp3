@@ -9,8 +9,8 @@ import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lp.JavaFxClient.model.InscricaoDTO;
-import lp.JavaFxClient.model.ProgramaVoluntariadoDTO;
+import lp.JavaFxClient.DTO.InscricaoDTO;
+import lp.JavaFxClient.DTO.ProgramaVoluntariadoDTO;
 
 public class ApiService {
 
@@ -129,20 +129,45 @@ public class ApiService {
         client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
-    // métodos lista de programas voluntariado
+    // métodos lista de programas de voluntariado
     public List<ProgramaVoluntariadoDTO> getProgramasVoluntariado() {
         try {
             String json = get("/voluntariado/programasvoluntariado");
 
             return mapper.readValue(
-                    json,
-                    new TypeReference<List<ProgramaVoluntariadoDTO>>() {}
+                json,
+                new TypeReference<List<ProgramaVoluntariadoDTO>>() {}
             );
 
         } catch (Exception e) {
             throw new RuntimeException(
-                    "Erro ao carregar programas de voluntariado", e
+                "Erro ao carregar programas de voluntariado", e
             );
+        }
+    }
+
+    // inscrever voluntário num programa de voluntariado
+    public InscricaoDTO inscreverPrograma(Long programaId, Long voluntarioId) {
+        try {
+            String json = """
+                    {
+                      "programaId": %d,
+                      "voluntarioId": %d,
+                      "nHorasRealizadas": 0
+                    }
+                    """.formatted(programaId, voluntarioId);
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(BASE_URL + "/voluntariado/inscricoes/inscrever"))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(json))
+                    .build();
+
+            String response = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
+            return mapper.readValue(response, InscricaoDTO.class);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao efetuar inscrição", e);
         }
     }
 }
