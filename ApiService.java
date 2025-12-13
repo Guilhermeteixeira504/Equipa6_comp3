@@ -1,34 +1,89 @@
 package lp.JavaFxClient.services;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lp.JavaFxClient.model.InscricaoDTO;
-import lp.JavaFxClient.model.ProgramaVoluntariadoDTO;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lp.JavaFxClient.model.InscricaoDTO;
+import lp.JavaFxClient.model.ProgramaVoluntariadoDTO;
+
 public class ApiService {
 
     private static final String BASE_URL = "http://localhost:8080";
-
     private final HttpClient client = HttpClient.newHttpClient();
     private final ObjectMapper mapper = new ObjectMapper();
 
-    // método get
-    private String get(String path) throws Exception {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + path))
-                .GET()
-                .build();
+    // get
+    public String get(String path) {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(BASE_URL + path))
+                    .GET()
+                    .build();
 
-        return client.send(request, HttpResponse.BodyHandlers.ofString()).body();
+            return client.send(request, HttpResponse.BodyHandlers.ofString()).body();
+
+        } catch (Exception e) {
+            return "ERROR: " + e.getMessage();
+        }
     }
 
-    
+    // post
+    public String post(String path, Object bodyObject) {
+        try {
+            String json = mapper.writeValueAsString(bodyObject);
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(BASE_URL + path))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(json))
+                    .build();
+
+            return client.send(request, HttpResponse.BodyHandlers.ofString()).body();
+
+        } catch (Exception e) {
+            return "ERROR: " + e.getMessage();
+        }
+    }
+
+    // put
+    public String put(String path, Object bodyObject) {
+        try {
+            String json = mapper.writeValueAsString(bodyObject);
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(BASE_URL + path))
+                    .header("Content-Type", "application/json")
+                    .PUT(HttpRequest.BodyPublishers.ofString(json))
+                    .build();
+
+            return client.send(request, HttpResponse.BodyHandlers.ofString()).body();
+
+        } catch (Exception e) {
+            return "ERROR: " + e.getMessage();
+        }
+    }
+
+    // delete
+    public String delete(String path) {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(BASE_URL + path))
+                    .DELETE()
+                    .build();
+
+            return client.send(request, HttpResponse.BodyHandlers.ofString()).body();
+
+        } catch (Exception e) {
+            return "ERROR: " + e.getMessage();
+        }
+    }
+
     // métodos inscricoes
     public List<InscricaoDTO> getInscricoes() throws Exception {
         String json = get("/voluntariado/inscricoes");
@@ -74,7 +129,6 @@ public class ApiService {
         client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
-    
     // métodos lista de programas voluntariado
     public List<ProgramaVoluntariadoDTO> getProgramasVoluntariado() {
         try {
