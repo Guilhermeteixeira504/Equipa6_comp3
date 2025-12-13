@@ -34,6 +34,22 @@ public class MenuInicialController {
 	}
 	
 	@FXML
+	void onRegistar(ActionEvent event) {
+		try {
+			FXMLLoader loader = new
+					FXMLLoader(getClass().getResource("/registarutilizador.fxml"));
+					Parent root = loader.load();
+					Stage stage = new Stage();
+					stage.setTitle("Login");
+					stage.setScene(new Scene(root));
+					stage.show();
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	}
+	
+	@FXML
 	private void onSair() {
 		System.exit(0);
 	}

@@ -5,40 +5,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="10.0"
-      xmlns="http://javafx.com/javafx/25"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="lp.JavaFxClient.controllers.MenuInicialController">
-
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllers.MenuInicialController">
    <children>
-
-      <HBox alignment="CENTER" prefHeight="100.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label text="Sistema Voluntariado" />
          </children>
       </HBox>
-
-      <Button fx:id="loginButton"
-              text="Login"
-              onAction="#onLogin" />
-
-      <Button fx:id="registarButton"
-              text="Registar"
-              onAction="#onRegistar" />
-
-
-      <Button fx:id="inscricaoButton"
-              text="Gestão de Inscrições"
-              onAction="#onAbrirInscricoes" />
-
-      <Button fx:id="programasButton"
-              text="Lista de Programas de Voluntariado"
-              onAction="#onAbrirProgramasVoluntariado" />
-
-      <Button fx:id="sairButton"
-              text="Sair"
-              onAction="#onSair" />
-
+      <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onLogin" text="Login" />
+      <Button fx:id="onRegistar" mnemonicParsing="false" text="Registar" />
+      <Button mnemonicParsing="false" text="Sair" />
    </children>
-
 </VBox>
