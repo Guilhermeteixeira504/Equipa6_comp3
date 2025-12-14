@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllers.ListarUtilizadoresController">
+   <top>
+      <Label text="Utilizadores" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <TableView fx:id="utilizadoresTable" layoutX="20" layoutY="60" prefWidth="560" prefHeight="300">
+    <columns>
+        <TableColumn fx:id="colunaNome" text="Nome" prefWidth="140"/>
+        <TableColumn fx:id="colunaEmail" text="Email" prefWidth="180"/>
+        <TableColumn fx:id="colunaContacto" text="Contacto" prefWidth="120"/>
+        <TableColumn fx:id="colunaTipoUtilizador" text="Tipo Utilizador" prefWidth="120"/>
+    </columns>
+</TableView>
+
+   </center>
+</BorderPane>
