@@ -53,7 +53,7 @@ public class ListarUtilizadoresController {
 						mapper.readValue(json, new TypeReference<List<UtilizadorDTO>>() {});
 					 utilizadoresTable.getItems().setAll(utilizadores);
 		}catch (Exception e) {
-		 showError("Error loading students: " + e.getMessage());
+		 showError("Erro a Carregar Utilizadores: " + e.getMessage());
 		}
 }
 	

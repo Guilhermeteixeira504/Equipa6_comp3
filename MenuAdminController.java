@@ -45,9 +45,8 @@ public class MenuAdminController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+			}
 	}
-
 	@FXML
 	private void onListarU() {
 		try {
@@ -60,7 +59,7 @@ public class MenuAdminController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+			}
 	}
 	
 	@FXML
@@ -75,6 +74,7 @@ public class MenuAdminController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		
 		}
 	}
 	
@@ -90,6 +90,7 @@ public class MenuAdminController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		
 		}
 	}
 	
@@ -105,6 +106,7 @@ public class MenuAdminController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		
 		}
 	}
 	
@@ -120,6 +122,7 @@ public class MenuAdminController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		
 		}
 	}
 	
@@ -135,73 +138,74 @@ public class MenuAdminController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-	}
-
-	// metodo registar instituicao adicionado
-	@FXML
-	private void onRegistarInstituicao() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/registarInstituicao.fxml"));
-			Parent root = loader.load();
-			Stage stage = new Stage();
-			stage.setTitle("Registar Instituição");
-			stage.setScene(new Scene(root));
-			stage.show();
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		
 		}
 	}
 	
-	// metodo criar edicao adicionado
+	@FXML
+	private void onRegistarInstituicao() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/criarinstituicao.fxml"));
+			Parent root = loader.load();
+			Stage stage = new Stage();
+			stage.setTitle("Criar Instituição");
+			stage.setScene(new Scene(root));
+			stage.show();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		
+		}
+	}
+	
 	@FXML
 	private void onCriarEdicao() {
-	    try {
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/criaredicao.fxml"));
-	        Parent root = loader.load();
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/criaredicao.fxml"));
+			Parent root = loader.load();
+			Stage stage = new Stage();
+			stage.setTitle("Criar Edição");
+			stage.setScene(new Scene(root));
+			stage.show();
 
-	        Stage stage = new Stage();
-	        stage.setTitle("Criar Edição");
-	        stage.setScene(new Scene(root));
-	        stage.show();
-
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		
+		}
 	}
-
-	// metodo procurar programa adicionado
+	
 	@FXML
-	private void onProcurar() {
+	private void onProcurarId() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/procurarporid.fxml"));
 			Parent root = loader.load();
-
 			Stage stage = new Stage();
-			stage.setTitle("Procurar Programa");
+			stage.setTitle("Procurar programa");
 			stage.setScene(new Scene(root));
 			stage.show();
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		
 		}
 	}
-
-	// metodo definir horas trabalhadas adicionado
+	
 	@FXML
 	private void onDefinirHoras() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/definirhoras.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/defenirhoras.fxml"));
 			Parent root = loader.load();
-
 			Stage stage = new Stage();
-			stage.setTitle("Definir Horas Trabalhadas");
+			stage.setTitle("Definir Horas");
 			stage.setScene(new Scene(root));
 			stage.show();
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		
 		}
 	}
 }
+	
+	
+	

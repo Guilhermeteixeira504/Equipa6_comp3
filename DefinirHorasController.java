@@ -46,9 +46,4 @@ public class DefinirHorasController {
             resultadoArea.setText("Erro: valores inválidos.");
         }
     }
-
-    private void mostrarErro(String msg) {
-        resultadoArea.setText(msg);
-        new Alert(Alert.AlertType.ERROR, msg).showAndWait();
-    }
 }

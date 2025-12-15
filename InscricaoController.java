@@ -1,118 +1,158 @@
 package lp.JavaFxClient.controllers;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleLongProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleLongProperty;
 
 import lp.JavaFxClient.DTO.InscricaoDTO;
 import lp.JavaFxClient.services.ApiService;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.util.List;
 
 public class InscricaoController {
 
     // tabela
     @FXML private TableView<InscricaoDTO> tableInscricoes;
+    @FXML private TableColumn<InscricaoDTO, Long> colId;
     @FXML private TableColumn<InscricaoDTO, Long> colPrograma;
+    @FXML private TableColumn<InscricaoDTO, Long> colVoluntario;
     @FXML private TableColumn<InscricaoDTO, Integer> colHoras;
 
     // campos
+    @FXML private TextField txtId;
     @FXML private TextField txtProgramaId;
+    @FXML private TextField txtVoluntarioId;
+    @FXML private TextField txtHoras;
 
     // botoes
+    @FXML private Button btnNovo;
     @FXML private Button btnGuardar;
+    @FXML private Button btnEliminar;
     @FXML private Button btnAtualizar;
 
     private final ApiService apiService = new ApiService();
-    private final ObjectMapper mapper = new ObjectMapper();
-
     private final ObservableList<InscricaoDTO> listaInscricoes =
             FXCollections.observableArrayList();
-
-    // utilizador logado
-    private Long voluntarioId;
 
     // inicializacao
     @FXML
     public void initialize() {
         configurarTabela();
+        configurarSelecaoTabela();
+        carregarInscricoes();
     }
 
     private void configurarTabela() {
+        colId.setCellValueFactory(c ->
+                new SimpleLongProperty(c.getValue().getId()).asObject());
+
         colPrograma.setCellValueFactory(c ->
                 new SimpleLongProperty(c.getValue().getProgramaId()).asObject());
 
+        colVoluntario.setCellValueFactory(c ->
+                new SimpleLongProperty(c.getValue().getVoluntarioId()).asObject());
+
         colHoras.setCellValueFactory(c ->
-                new SimpleIntegerProperty(c.getValue().getnHorasRealizadas()).asObject());
+                new SimpleIntegerProperty(
+                        c.getValue().getnHorasRealizadas()).asObject());
 
         tableInscricoes.setItems(listaInscricoes);
     }
 
-    // recebe o id do voluntario do login
-    public void setVoluntarioId(Long id) {
-        this.voluntarioId = id;
-        carregarInscricoes();
+    private void configurarSelecaoTabela() {
+        tableInscricoes.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((obs, oldVal, newVal) -> {
+                    if (newVal != null) {
+                        preencherFormulario(newVal);
+                    }
+                });
     }
 
-    // carregar dados (apenas as inscricoes do utilizador)
+    // carregar dados
     private void carregarInscricoes() {
-        if (voluntarioId == null) {
-            return;
-        }
-
         try {
-            String json = apiService.get("/voluntariado/inscricoes");
-
-            List<InscricaoDTO> todas =
-                    mapper.readValue(json, new TypeReference<List<InscricaoDTO>>() {});
-
-            listaInscricoes.setAll(
-                    todas.stream()
-                          .filter(i -> i.getVoluntarioId().equals(voluntarioId))
-                          .toList()
-            );
-
+            //listaInscricoes.setAll(apiService.getInscricoes());
         } catch (Exception e) {
             mostrarErro("Erro ao carregar inscrições: " + e.getMessage());
         }
     }
 
-    // botao inscrever-me
+    // formulario
+    private void preencherFormulario(InscricaoDTO dto) {
+        txtId.setText(String.valueOf(dto.getId()));
+        txtProgramaId.setText(String.valueOf(dto.getProgramaId()));
+        txtVoluntarioId.setText(String.valueOf(dto.getVoluntarioId()));
+        txtHoras.setText(String.valueOf(dto.getnHorasRealizadas()));
+    }
+
+    // botoes
+    @FXML
+    private void onNovo() {
+        txtId.clear();
+        txtProgramaId.clear();
+        txtVoluntarioId.clear();
+        txtHoras.clear();
+        tableInscricoes.getSelectionModel().clearSelection();
+    }
+
     @FXML
     private void onGuardar() {
         try {
-            if (txtProgramaId.getText().isEmpty()) {
-                mostrarErro("Indique o ID do programa.");
-                return;
-            }
-
-            if (voluntarioId == null) {
-                mostrarErro("Utilizador não identificado. Faça login novamente.");
+            if (txtProgramaId.getText().isEmpty()
+                    || txtVoluntarioId.getText().isEmpty()
+                    || txtHoras.getText().isEmpty()) {
+                mostrarErro("Preencha todos os campos obrigatórios.");
                 return;
             }
 
             InscricaoDTO dto = new InscricaoDTO();
             dto.setProgramaId(Long.parseLong(txtProgramaId.getText()));
-            dto.setVoluntarioId(voluntarioId);
+            dto.setVoluntarioId(Long.parseLong(txtVoluntarioId.getText()));
+            dto.setnHorasRealizadas(
+                    Integer.parseInt(txtHoras.getText()));
 
-            apiService.post("/voluntariado/inscricoes/inscrever", dto);
+            if (txtId.getText().isEmpty()) {
+                // criar
+                //InscricaoDTO criar =
+                //        apiService.criarInscricao(dto);
+                //listaInscricoes.add(criar);
+                mostrarInfo("Inscrição criada com sucesso!");
+            } else {
+                // atualizar
+                dto.setId(Long.parseLong(txtId.getText()));
+                //apiService.atualizarInscricao(dto.getId(), dto);
+                carregarInscricoes();
+                mostrarInfo("Inscrição atualizada com sucesso!");
+            }
 
-            mostrarInfo("Inscrição efetuada com sucesso!");
-            txtProgramaId.clear();
-            carregarInscricoes();
+            onNovo();
 
         } catch (Exception e) {
-            mostrarErro("Erro ao inscrever: " + e.getMessage());
+            mostrarErro("Erro ao guardar inscrição: " + e.getMessage());
         }
     }
 
-    // atualizar lista
+    @FXML
+    private void onEliminar() {
+        try {
+            if (txtId.getText().isEmpty()) {
+                mostrarErro("Selecione uma inscrição primeiro.");
+                return;
+            }
+
+            long id = Long.parseLong(txtId.getText());
+            //apiService.eliminarInscricao(id);
+            carregarInscricoes();
+            mostrarInfo("Inscrição eliminada com sucesso!");
+            onNovo();
+
+        } catch (Exception e) {
+            mostrarErro("Erro ao eliminar: " + e.getMessage());
+        }
+    }
+
     @FXML
     private void onAtualizar() {
         carregarInscricoes();
