@@ -46,7 +46,8 @@ public class MenuLoginController {
 			abrirMenu(user);
 			
 		} catch (Exception e) {
-			new Alert(Alert.AlertType.ERROR, "Error: " + e.getMessage()).showAndWait();
+			System.out.println("ERRO REAL:");
+            e.printStackTrace();
 		 }
 	}
 
