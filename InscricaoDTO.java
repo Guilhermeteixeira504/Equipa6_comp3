@@ -1,4 +1,4 @@
-package lp.JavaFxClient.model;
+package lp.JavaFxClient.DTO;
 
 public class InscricaoDTO {
 
