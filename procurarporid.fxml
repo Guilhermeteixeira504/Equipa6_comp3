@@ -1,43 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="lp.JavaFxClient.controllers.ProcurarProgramaController">
+<AnchorPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllers.ProcurarPorIdController">
 
     <children>
-        <VBox spacing="15"
-              alignment="CENTER"
-              AnchorPane.topAnchor="20"
-              AnchorPane.bottomAnchor="20"
-              AnchorPane.leftAnchor="20"
-              AnchorPane.rightAnchor="20">
+        <VBox alignment="CENTER" spacing="15" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
 
             <!-- TÍTULO -->
-            <Label text="Procurar Programa de Voluntariado"
-                   style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Procurar Programa de Voluntariado" />
 
             <!-- ID DO PROGRAMA -->
             <HBox spacing="10">
-                <Label text="ID do Programa:" minWidth="160"/>
-                <TextField fx:id="programaIdField"
-                           promptText="Ex: 1"/>
+                <Label minWidth="160" text="ID do Programa:" />
+                <TextField fx:id="txtPrograma" promptText="Ex: 1" />
             </HBox>
 
             <!-- BOTÃO -->
-            <Button text="Procurar Programa"
-                    prefWidth="250"
-                    onAction="#onProcurar"/>
+            <Button fx:id="buttonProcurar" onAction="#procurarPrograma" prefWidth="250" text="Procurar Programa" />
 
             <!-- RESULTADO -->
-            <TextArea fx:id="resultadoArea"
-                      prefHeight="250"
-                      wrapText="true"
-                      editable="false"
-                      promptText="Aqui será mostrado o programa encontrado"/>
+            <TextArea fx:id="resultadoArea" editable="false" prefHeight="250" promptText="Aqui será mostrado o programa encontrado" wrapText="true" />
 
         </VBox>
     </children>

@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllers.MenuAdminController">
    <children>
-      <Label alignment="TOP_CENTER" layoutX="177.0" layoutY="33.0" prefHeight="46.0" prefWidth="247.0" text="Menu Admin">
+      <Label layoutX="239.0" layoutY="33.0" text="Menu Admin">
          <font>
             <Font size="31.0" />
          </font>
@@ -25,7 +25,7 @@
             <items>
               <MenuItem fx:id="itemCriarPrograma" mnemonicParsing="false" onAction="#onCriarPrograma" text="Criar programa de voluntariado" />
                   <MenuItem fx:id="itemListarProgramas" mnemonicParsing="false" onAction="#onListarProgramas" text="Listar programas" />
-                  <MenuItem fx:id="itemProcurarPrograma" mnemonicParsing="false" onAction="#onProcurar" text="Procurar programa por id" />
+                  <MenuItem fx:id="itemProcurarPrograma" mnemonicParsing="false" onAction="#onProcurarId" text="Procurar programa por id" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Edição">
@@ -42,7 +42,7 @@
           <Menu mnemonicParsing="false" text="Utilizadores">
             <items>
                   <MenuItem fx:id="itemListarUtilizadores" mnemonicParsing="false" onAction="#onListarU" text="Listar utilizadores" />
-              <MenuItem fx:id="ListarVoluntarios" mnemonicParsing="false" onAction="#onListarV" text="Listar voluntarios" />
+              <MenuItem fx:id="ListarVoluntarios" mnemonicParsing="false" text="Listar voluntarios" />
                   <MenuItem fx:id="itemListarInscricoes" mnemonicParsing="false" onAction="#onListarI" text="Listar inscrições" />
                   <MenuItem fx:id="itemDefinirHorasTrabalhadas" mnemonicParsing="false" onAction="#onDefinirHoras" text="Definir horas trabalhadas por voluntario" />
             </items>
