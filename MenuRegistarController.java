@@ -120,11 +120,7 @@ public class MenuRegistarController {
             dto.setTelemovel(numero);
             dto.setTipoUtilizador(tipoSelecionado);
 
-            String endpoint = tipoSelecionado.equals("ADMIN")
-                    ? "/voluntariado/utilizadores"
-                    : "/voluntariado/voluntarios";
-
-            api.post(endpoint, dto);
+            api.post("/voluntariado/utilizadores", dto);
 
             new Alert(Alert.AlertType.INFORMATION,
                     "Registo efetuado com sucesso!").showAndWait();
