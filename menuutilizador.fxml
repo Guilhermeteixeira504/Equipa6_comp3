@@ -14,11 +14,13 @@
             <Font size="22.0" />
          </font></Label>
 
-      <Button fx:id="btnVerProgramas" onAction="#onVerProgramas" text="Ver Programas de Voluntariado" />
+      <Button fx:id="butonVerProgramas" onAction="#onVerProgramas" text="Ver Programas de Voluntariado" />
 
-      <Button fx:id="btnInscrever" onAction="#onInscrever" text="Inscrever-se num Programa" />
+      <Button fx:id="buttonInscrever" onAction="#onInscrever" text="Inscrever-se num Programa" />
+      
+      <Button fx:id="buttonAlterarPass" onAction="#onAlterarPalavraPasse" text="Alterar a palavra passe" />
 
-      <Button fx:id="btnSair" onAction="#onSair" text="Sair" />
+      <Button fx:id="buttonSair" onAction="#onSair" text="Sair" />
 
    </children>
 </VBox>
