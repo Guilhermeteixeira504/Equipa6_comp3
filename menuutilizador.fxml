@@ -2,22 +2,23 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllers.CriarTipoVoluntariadoController">
+<VBox alignment="CENTER" prefHeight="250.0" prefWidth="568.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllers.MenuUtilizadorController">
+
    <children>
-      <Label layoutX="153.0" layoutY="71.0" text="Criar tipo de voluntariado">
+
+      <Label alignment="TOP_CENTER" text="Menu do Utilizador" textFill="#304f82">
          <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
-      <Label layoutX="166.0" layoutY="173.0" text="Nome:" />
-      <TextField fx:id="txtNome" layoutX="217.0" layoutY="169.0" />
-      <Button fx:id="btnCriar" layoutX="266.0" layoutY="248.0" mnemonicParsing="false" onAction="#onCriar" text="Criar">
-         <font>
-            <Font size="17.0" />
-         </font></Button>
+            <Font size="22.0" />
+         </font></Label>
+
+      <Button fx:id="btnVerProgramas" onAction="#onVerProgramas" text="Ver Programas de Voluntariado" />
+
+      <Button fx:id="btnInscrever" onAction="#onInscrever" text="Inscrever-se num Programa" />
+
+      <Button fx:id="btnSair" onAction="#onSair" text="Sair" />
+
    </children>
-</AnchorPane>
+</VBox>
