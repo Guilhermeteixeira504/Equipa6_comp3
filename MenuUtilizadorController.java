@@ -3,6 +3,7 @@ package lp.JavaFxClient.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -10,37 +11,44 @@ import javafx.stage.Stage;
 public class MenuUtilizadorController {
 
     @FXML
-    void onVerProgramas(ActionEvent event) {
-        abrirJanela(
-            "/programa-voluntariado-lista.fxml",
-            "Programas de Voluntariado"
-        );
-    }
-
-    @FXML
-    void onInscrever(ActionEvent event) {
-        abrirJanela(
-            "/inscrever-programa.fxml",
-            "Inscrição em Programa"
-        );
-    }
-
-    @FXML
-    void onSair(ActionEvent event) {
-        ((Stage)((javafx.scene.Node)event.getSource())
-                .getScene().getWindow()).close();
-    }
-
-    private void abrirJanela(String fxml, String titulo) {
+    private void onVerProgramas() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            FXMLLoader loader =
+                    new FXMLLoader(getClass().getResource("/programavoluntariadolista.fxml"));
             Parent root = loader.load();
+
             Stage stage = new Stage();
-            stage.setTitle(titulo);
+            stage.setTitle("Programas de Voluntariado");
             stage.setScene(new Scene(root));
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void onInscrever() {
+        try {
+            FXMLLoader loader =
+                    new FXMLLoader(getClass().getResource("/inscricao.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Inscrição em Programa");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void onSair(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource())
+                .getScene()
+                .getWindow();
+        stage.close();
     }
 }
