@@ -23,7 +23,7 @@
             </HBox>
 
             <!-- BOTÃO -->
-            <Button fx:id="buttonProcurar" onAction="#procurarPrograma" prefWidth="250" text="Procurar Programa" />
+            <Button fx:id="buttonProcurar" onAction="#onProcurarPrograma" prefWidth="250" text="Procurar Programa" />
 
             <!-- RESULTADO -->
             <TextArea fx:id="resultadoArea" editable="false" prefHeight="250" promptText="Aqui será mostrado o programa encontrado" wrapText="true" />
