@@ -1,35 +1,45 @@
 package lp.JavaFxClient.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import lp.JavaFxClient.DTO.InstituicaoDTO;
 import lp.JavaFxClient.services.ApiService;
 
 public class CriarInstituicaoController {
 
-	private final ApiService api = new ApiService();
-	
-	@FXML
-	private TextField txtNome;
-	@FXML
-	private Button buttonCriar;
-	
-	@FXML
-	private void onCriar(ActionEvent event) {
-		try {
-		InstituicaoDTO dto = new InstituicaoDTO();
-		dto.setNome(txtNome.getText());
-		
-		String response = api.post("/voluntariado/instituicoes", dto);
-		
-		new Alert(Alert.AlertType.INFORMATION,"Instituição criada!").showAndWait();
-        txtNome.getScene().getWindow().hide();
+    @FXML
+    private TextField nomeField;
 
-		} catch (Exception e) {
-			new Alert(Alert.AlertType.ERROR, "Erro: " + e.getMessage()).showAndWait();
-			}
-	}
+    @FXML
+    private Label mensagemLabel;
+
+    private final ApiService apiService = new ApiService();
+
+    @FXML
+    private void registarInstituicao() {
+        try {
+            // validação 
+            if (nomeField.getText().trim().isEmpty()) {
+                mensagemLabel.setText("O nome da instituição é obrigatório.");
+                return;
+            }
+
+            InstituicaoDTO instituicao = new InstituicaoDTO();
+            instituicao.setNome(nomeField.getText().trim());
+
+            String resposta = apiService.post("/voluntariado/instituicoes", instituicao);
+
+            if (resposta != null && resposta.startsWith("ERROR")) {
+                mensagemLabel.setText(resposta);
+            } else {
+                mensagemLabel.setText("Instituição registada com sucesso.");
+                nomeField.clear();
+            }
+
+        } catch (Exception e) {
+            mensagemLabel.setText("Erro ao registar instituição.");
+            e.printStackTrace();
+        }
+    }
 }
