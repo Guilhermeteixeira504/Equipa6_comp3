@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minHeight="336.0" minWidth="800.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllers.ListarProgramasController">
+
+    <top>
+        <Label alignment="CENTER" style="-fx-text-fill: blue;" text="Programas de Voluntariado" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="20.0" />
+            </font>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+        </Label>
+    </top>
+
+    <center>
+        <TableView fx:id="programasTable" prefHeight="300.0" prefWidth="760.0">
+
+            <columns>
+
+                <TableColumn fx:id="colunaTitulo" prefWidth="180.0" text="Título" />
+
+                <TableColumn fx:id="colunaLocalizacao" prefWidth="188.00006103515625" text="Localização" />
+
+                <TableColumn fx:id="colunaVagas" prefWidth="107.199951171875" text="Número de Vagas" />
+
+                <TableColumn fx:id="colunaHoras" prefWidth="72.0" text="Total Horas" />
+
+                <TableColumn fx:id="colunaDataInicio" prefWidth="123.20013427734375" text="Data Início" />
+
+                <TableColumn fx:id="colunaDataFim" prefWidth="132.7999267578125" text="Data Fim" />
+            </columns>
+
+        </TableView>
+    </center>
+   <bottom>
+      <Button fx:id="buttonAssociarInstituicao" mnemonicParsing="false" onAction="#onAssInstituicao" text="Associar Instituição" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <Button fx:id="buttonAssociarTipo" mnemonicParsing="false" onAction="#onAssTipo" text="Associar Tipo" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Button fx:id="buttonAssociarEdicao" mnemonicParsing="false" onAction="#onAssEdicao" text="Associar Edição" BorderPane.alignment="CENTER" />
+   </right>
+
+</BorderPane>

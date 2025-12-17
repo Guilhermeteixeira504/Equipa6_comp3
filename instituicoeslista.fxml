@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity"
+            maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="400.0"
+            prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lp.JavaFxClient.controllers.ListarInstituicoesController">
+
+   <top>
+      <Label text="Instituições" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+   </top>
+
+   <center>
+      <TableView fx:id="instituicoesTable"
+                 prefHeight="200.0"
+                 prefWidth="200.0"
+                 BorderPane.alignment="CENTER">
+
+         <columns>
+            <TableColumn fx:id="colunaNome"
+                         prefWidth="189.6"
+                         text="Nome" />
+
+            <!-- AQUI FOI A ÚNICA ALTERAÇÃO -->
+            <TableColumn fx:id="colunaProgramas"
+                         prefWidth="409.6"
+                         text="Programa Associado" />
+         </columns>
+
+      </TableView>
+   </center>
+</BorderPane>

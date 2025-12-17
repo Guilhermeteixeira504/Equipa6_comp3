@@ -1,66 +1,47 @@
 package lp.JavaFxClient.controllers;
 
 import java.time.LocalDate;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import lp.JavaFxClient.DTO.EdicaoDTO;
 import lp.JavaFxClient.services.ApiService;
 
 public class CriarEdicaoController {
+private final ApiService api = new ApiService();
+	
+	@FXML
+	private TextField txtAno;
+	@FXML
+	private TextField txtNumVagas;
+	@FXML
+	private DatePicker dpDataInicio;
+	@FXML
+	private DatePicker dpDataFim;
+	@FXML
+	private Button buttonCriar;
 
-    @FXML private TextField anoField;
-    @FXML private TextField numeroVagasField;
-    @FXML private TextField dataInicioField;
-    @FXML private TextField dataFimField;
-    @FXML private TextField programaIdField;
-    @FXML private Label mensagemLabel;
+	@FXML
+	private void onCriar(ActionEvent event) {
+		try {
+		EdicaoDTO dto = new EdicaoDTO();
+		dto.setAno(Integer.parseInt(txtAno.getText()));
+		dto.setNumeroVagas(Integer.parseInt(txtNumVagas.getText()));
+		dto.setDataInicio(dpDataInicio.getValue());
+		dto.setDataFim(dpDataFim.getValue());
+		
+		String response = api.post("/voluntariado/edicoes", dto);
+		System.out.println("Resposta backend: " + response);
+		
+		new Alert(Alert.AlertType.INFORMATION,"Edição criada!").showAndWait();
+        txtAno.getScene().getWindow().hide();
 
-    private final ApiService apiService = new ApiService();
+		} catch (Exception e) {
+			new Alert(Alert.AlertType.ERROR, "Erro: " + e.getMessage()).showAndWait();
+			}
+	}
 
-    @FXML
-    private void onCriar() {
-
-        try {
-            // validacao
-            if (anoField.getText().isEmpty()
-                    || numeroVagasField.getText().isEmpty()
-                    || dataInicioField.getText().isEmpty()
-                    || dataFimField.getText().isEmpty()
-                    || programaIdField.getText().isEmpty()) {
-
-                mensagemLabel.setText("Preencha todos os campos.");
-                return;
-            }
-
-            EdicaoDTO edicao = new EdicaoDTO();
-            edicao.setAno(Integer.parseInt(anoField.getText()));
-            edicao.setNumeroVagas(Integer.parseInt(numeroVagasField.getText()));
-            edicao.setDataInicio(LocalDate.parse(dataInicioField.getText()));
-            edicao.setDataFim(LocalDate.parse(dataFimField.getText()));
-            edicao.setProgramaId(Long.parseLong(programaIdField.getText()));
-
-            String resposta = apiService.post("/edicoes", edicao);
-
-            if (resposta != null && resposta.startsWith("ERROR")) {
-                mensagemLabel.setText(resposta);
-            } else {
-                mensagemLabel.setText("Edição criada com sucesso.");
-                limparCampos();
-            }
-
-        } catch (Exception e) {
-            mensagemLabel.setText("Erro ao criar edição.");
-            e.printStackTrace();
-        }
-    }
-
-    private void limparCampos() {
-        anoField.clear();
-        numeroVagasField.clear();
-        dataInicioField.clear();
-        dataFimField.clear();
-        programaIdField.clear();
-    }
 }

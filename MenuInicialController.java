@@ -40,7 +40,7 @@ public class MenuInicialController {
 					FXMLLoader(getClass().getResource("/registarutilizador.fxml"));
 					Parent root = loader.load();
 					Stage stage = new Stage();
-					stage.setTitle("Login");
+					stage.setTitle("Registo");
 					stage.setScene(new Scene(root));
 					stage.show();
 

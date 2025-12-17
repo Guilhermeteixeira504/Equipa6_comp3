@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="295.0" prefWidth="550" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllers.CriarInstituicaoController">
+
+    <children>
+        <VBox alignment="TOP_CENTER" prefHeight="222.0" prefWidth="510.0" spacing="30" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+
+            <!-- titulo -->
+            <Label alignment="TOP_CENTER" style="-fx-text-fill: #304f82;" text="Registar Instituição">
+                <font>
+                    <Font size="26.0" />
+                </font>
+            </Label>
+
+            <!-- formulario -->
+            <VBox alignment="CENTER_LEFT" spacing="20">
+
+                <HBox spacing="15">
+                    <Label minWidth="180" text="Nome da Instituição:">
+                  <font>
+                     <Font size="14.0" />
+                  </font></Label>
+                    <TextField fx:id="nomeField" prefWidth="250" promptText="Nome da instituição" />
+                </HBox>
+
+            </VBox>
+
+            <!-- botao -->
+            <HBox alignment="CENTER">
+                <Button onAction="#registarInstituicao" prefWidth="260" text="Registar Instituição">
+               <font>
+                  <Font size="13.0" />
+               </font></Button>
+            </HBox>
+
+            <!-- mensagem -->
+            <Label fx:id="mensagemLabel" />
+
+        </VBox>
+    </children>
+</AnchorPane>

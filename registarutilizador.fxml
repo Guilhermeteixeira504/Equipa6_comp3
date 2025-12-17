@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllers.MenuRegistarController">
    <children>
       <Label layoutX="182.0" layoutY="63.0" text="Nome:" />
       <Label layoutX="184.0" layoutY="108.0" text="Email:" />
@@ -22,10 +21,12 @@
       <TextField fx:id="txtemail" layoutX="225.0" layoutY="104.0" />
       <TextField fx:id="txtmorada" layoutX="225.0" layoutY="209.0" />
       <TextField fx:id="txttelemovel" layoutX="225.0" layoutY="256.0" />
-      <MenuButton layoutX="230.0" layoutY="306.0" mnemonicParsing="false" text="MenuButton">
+
+
+      <MenuButton fx:id="tipoMenuButton" layoutX="230.0" layoutY="306.0" mnemonicParsing="false" text="MenuButton">
         <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
+          <MenuItem mnemonicParsing="false" onAction="#selecionarAdmin" text="Admin" />
+          <MenuItem mnemonicParsing="false" onAction="#selecionarUtilizador" text="Utilizador" />
         </items>
       </MenuButton>
       <PasswordField fx:id="txtpassword" layoutX="225.0" layoutY="156.0" />
@@ -34,6 +35,8 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <Button fx:id="btnregistar" layoutX="242.0" layoutY="345.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="74.0" text="Registar" />
+      <Button fx:id="btnregistar" layoutX="242.0" layoutY="345.0" mnemonicParsing="false" onAction="#onEntrar" prefHeight="32.0" prefWidth="74.0" text="Registar" />
+      <Label fx:id="labelErro" layoutX="228.0" layoutY="130.0" prefHeight="18.0" prefWidth="150.0" textFill="RED" visible="false" />
+      <Label fx:id="labelErro2" layoutX="228.0" layoutY="282.0" prefHeight="18.0" prefWidth="143.0" textFill="RED" visible="false" />
    </children>
 </AnchorPane>

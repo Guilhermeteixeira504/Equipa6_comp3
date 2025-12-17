@@ -1,24 +1,23 @@
 package lp.JavaFxClient.controllers;
 
 import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import lp.JavaFxClient.model.ProgramaVoluntariadoDTO;
-import lp.JavaFxClient.services.ApiService;
+import lp.JavaFxClient.DTO.ProgramaVoluntariadoDTO;
 
 public class ProgramaVoluntariadoListaController {
 
     @FXML private TableView<ProgramaVoluntariadoDTO> tableProgramas;
-    @FXML private TableColumn<ProgramaVoluntariadoDTO, Long> colId;
     @FXML private TableColumn<ProgramaVoluntariadoDTO, String> colTitulo;
     @FXML private TableColumn<ProgramaVoluntariadoDTO, String> colLocalizacao;
     @FXML private TableColumn<ProgramaVoluntariadoDTO, Integer> colVagas;
     @FXML private TableColumn<ProgramaVoluntariadoDTO, Object> colDataInicio;
     @FXML private TableColumn<ProgramaVoluntariadoDTO, Object> colDataFim;
 
-    private final ApiService apiService = new ApiService();
+    //private final ApiService apiService = new ApiService();
     private ObservableList<ProgramaVoluntariadoDTO> listaProgramas =
             FXCollections.observableArrayList();
 
@@ -30,8 +29,6 @@ public class ProgramaVoluntariadoListaController {
     }
 
     private void configurarTabela() {
-        colId.setCellValueFactory(c ->
-                new javafx.beans.property.SimpleLongProperty(c.getValue().getId()).asObject());
 
         colTitulo.setCellValueFactory(c ->
                 new javafx.beans.property.SimpleStringProperty(c.getValue().getTitulo()));
@@ -54,7 +51,7 @@ public class ProgramaVoluntariadoListaController {
     // carregar dados da API
     private void carregarProgramas() {
         try {
-            listaProgramas.setAll(apiService.getProgramasVoluntariado());
+      //      listaProgramas.setAll(apiService.getProgramasVoluntariado());
         } catch (Exception e) {
             e.printStackTrace();
         }

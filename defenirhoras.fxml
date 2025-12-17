@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lp.JavaFxClient.controllers.DefinirHorasController">
+
+    <children>
+
+        <!-- TÍTULO -->
+        <Label layoutX="120.0" layoutY="20.0" text="Registar Horas Trabalhadas" textFill="#0066cc">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+
+        <!-- ID INSCRIÇÃO -->
+        <Label layoutX="80.0" layoutY="90.0" text="ID da Inscrição:" />
+
+        <TextField fx:id="inscricaoIdField" layoutX="200.0" layoutY="86.0" promptText="Ex: 1" />
+
+        <!-- HORAS -->
+        <Label layoutX="80.0" layoutY="140.0" text="Horas Trabalhadas:" />
+
+        <TextField fx:id="horasField" layoutX="200.0" layoutY="136.0" promptText="Ex: 8" />
+
+        <!-- BOTÃO -->
+        <Button fx:id="btnRegistarHoras" layoutX="180.0" layoutY="190.0" onAction="#registarHoras" prefWidth="160.0" text="Registar Horas" />
+
+        <!-- RESULTADO -->
+        <TextArea fx:id="resultadoArea" editable="false" layoutX="50.0" layoutY="240.0" prefHeight="80.0" prefWidth="400.0" promptText="Resultado da operação" wrapText="true" />
+
+    </children>
+</AnchorPane>

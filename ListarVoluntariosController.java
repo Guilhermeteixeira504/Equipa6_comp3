@@ -6,54 +6,46 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import lp.JavaFxClient.DTO.UtilizadorDTO;
+import lp.JavaFxClient.DTO.VoluntarioDTO;
 import lp.JavaFxClient.services.ApiService;
 
-public class ListarUtilizadoresController {
-	
+public class ListarVoluntariosController {
 	private final ApiService api = new ApiService();
 	private final ObjectMapper mapper = new ObjectMapper();
 	
 	@FXML
-	private TableView <UtilizadorDTO> utilizadoresTable;
+	private TableView <VoluntarioDTO> voluntariosTable;
 	@FXML
-	private TableColumn <UtilizadorDTO,String>colunaNome;
+	private TableColumn <VoluntarioDTO,String>colunaNome;
 	@FXML
-	private TableColumn <UtilizadorDTO,String>colunaEmail;
+	private TableColumn <VoluntarioDTO,String>colunaEmail;
 	@FXML
-	private TableColumn <UtilizadorDTO,Integer>colunaContacto;
-	@FXML
-	private TableColumn <UtilizadorDTO,String>colunaTipoUtilizador;
+	private TableColumn <VoluntarioDTO,Integer>colunaContacto;
 	
 	public void initialize() {
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colunaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colunaContacto.setCellValueFactory(new PropertyValueFactory<>("telemovel"));
-        colunaTipoUtilizador.setCellValueFactory(new PropertyValueFactory<>("tipoUtilizador"));
 
-        loadUtilizadores();
+        loadVoluntarios();
     }
-		private void loadUtilizadores() {
+
+	private void loadVoluntarios() {
 		try {
-			String json = api.get("/voluntariado/utilizadores");
+			String json = api.get("/voluntariado/voluntarios");
 			if (json.startsWith("ERROR:")) {
 					showError(json);
 					return;
 				 }
-			List<UtilizadorDTO> utilizadores =
-						mapper.readValue(json, new TypeReference<List<UtilizadorDTO>>() {});
-					 utilizadoresTable.getItems().setAll(utilizadores);
+			List<VoluntarioDTO> voluntarios =
+						mapper.readValue(json, new TypeReference<List<VoluntarioDTO>>() {});
+					 voluntariosTable.getItems().setAll(voluntarios);
 		}catch (Exception e) {
-		 showError("Erro a Carregar Utilizadores: " + e.getMessage());
+		 showError("Erro a carregar voluntários: " + e.getMessage());
 		}
 }
 	
@@ -61,6 +53,4 @@ public class ListarUtilizadoresController {
 		Alert a = new Alert(Alert.AlertType.ERROR, msg);
 		a.showAndWait();
 		}
-	
 }
-
