@@ -11,7 +11,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lp.JavaFxClient.DTO.InscricaoDTO;
-import lp.JavaFxClient.DTO.UtilizadorDTO;
 import lp.JavaFxClient.services.ApiService;
 
 public class ListarInscricoesController {
@@ -24,17 +23,14 @@ public class ListarInscricoesController {
 	private TableColumn <InscricaoDTO, Long> colunaVoluntario;
 	@FXML
 	private TableColumn <InscricaoDTO, Long> colunaPrograma;
-	@FXML
-	private TableColumn <InscricaoDTO, Long> colunaEdicao;
 	
 	public void initialize() {
-        colunaVoluntario.setCellValueFactory(new PropertyValueFactory<>("voluntario"));
-        colunaPrograma.setCellValueFactory(new PropertyValueFactory<>("programa"));
-        colunaEdicao.setCellValueFactory(new PropertyValueFactory<>("edicao"));
+        colunaVoluntario.setCellValueFactory(new PropertyValueFactory<>("voluntarioId"));
+        colunaPrograma.setCellValueFactory(new PropertyValueFactory<>("programaId"));
 
-        loadEdicoes();
+        loadInscricoes();
     }
-		private void loadEdicoes() {
+		private void loadInscricoes() {
 		try {
 			String json = api.get("/voluntariado/inscricoes");
 			if (json.startsWith("ERROR:")) {
@@ -55,4 +51,4 @@ public class ListarInscricoesController {
 		}
 	
 
-}	
+}
