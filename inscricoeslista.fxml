@@ -17,9 +17,8 @@
    <center>
       <TableView fx:id="inscricoesTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <columns>
-            <TableColumn fx:id="colunaVoluntario" prefWidth="191.20001220703125" text="Voluntário" />
-            <TableColumn fx:id="colunaPrograma" prefWidth="237.5999755859375" text="Programa" />
-            <TableColumn fx:id="colunaEdicao" prefWidth="171.20001220703125" text="Edição" />
+            <TableColumn fx:id="colunaVoluntario" prefWidth="298.39996337890625" text="Voluntário" />
+            <TableColumn fx:id="colunaPrograma" prefWidth="301.60009765625" text="Programa" />
          </columns>
       </TableView>
    </center>
